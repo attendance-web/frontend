@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Meta, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import paperIcon from '../../../assets/icon/paper_icon.png';
 import emailIcon from '../../../assets/icon/email_icon.png';
@@ -9,8 +9,7 @@ import eyeCloseIcon from '../../../assets/icon/eye_close_icon.png';
 export default function Register() {
     const [showPassword, setShowPassword] = useState(false);
     const [isRegistering, setIsRegistering] = useState(false);
-    const [message, setMessage] = useState('');
-    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState('');
     const [formData, setFormData] = useState({
         fullname: "",
         email: "",
@@ -24,7 +23,7 @@ export default function Register() {
     const handleShowPassword = () => setShowPassword(!showPassword);
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value});
+        setFormData({ ...formData, [e.target.name]: e.target.value} );
     }
 
     const handleRegister = (e) => {
@@ -34,14 +33,11 @@ export default function Register() {
         .then(() => {
             setIsRegistering(false)
             navigate('/auth/login');
-            setSuccess(true);
-            alert("asdwa")
         })
         .catch((err) => {
             setIsRegistering(false)
-            setMessage(err.response.data.message);
+            setError(err?.response?.data?.message ? err?.response?.data?.message : "Register failed!");
             console.log(err);
-            setSuccess(false);
         });
     }
 
@@ -71,7 +67,7 @@ export default function Register() {
                         <p className='font-semibold text-sky-500 text-start mb-2'>BirthDay</p>
                         <input onChange={handleChange} type="date" name='birthday' className="w-full placeholder:font-semibold bg-slate-200 border-2 border-sky-500 focus:outline-none px-2 py-3 rounded-full"></input>
                     </div>
-                    {message && <p className={`p-3 mb-4 rounded-full ${success ? 'bg-green-200 text-green-500' : 'bg-red-200 text-red-500'}`}>{message}</p>}
+                    {error && <p className='p-3 mb-4 rounded-full bg-red-200 text-red-500'>{error}</p>}
                     <button className='text-md bg-sky-500 text-slate-100 font-semibold w-full rounded-full p-3 mb-4' type='submit'>{isRegistering ? 'Registering...' : 'Register'}</button>
                     <p className='text-slate-800 font-semibold'>Already have an account? <span onClick={() => navigate('/auth/login')} className='text-sky-500 font-bold cursor-pointer hover:underline'>Sign in</span></p>
                 </form>
