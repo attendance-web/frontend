@@ -4,6 +4,7 @@ import './App.css';
 import Login from './components/auth/login/Login';
 import Register from './components/auth/register/Register';
 import Home from './components/home/Home';
+import Header from './components/templates/Header';
 
 const LoggedInCtx = createContext();
 
@@ -17,7 +18,8 @@ function App() {
 
   return (
     <LoggedInCtx.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-      <Router basename='/'>  
+      <Router basename='/'>
+        <Header />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path="/auth/login" element={<Login />} />

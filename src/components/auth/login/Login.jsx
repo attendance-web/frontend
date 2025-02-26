@@ -49,7 +49,7 @@ export default function Login() {
 
     return (
         <>
-            <div className="bg-indigo-950 min-h-screen flex justify-center items-center fixed inset-0">
+            <div className="bg-indigo-950 min-h-screen flex justify-center items-center">
                 <form onSubmit={handleLogin} method="POST" action="" className="bg-slate-50 text-center p-4 rounded-lg shadow-md w-96">
                     <div className='mb-6'>
                         <h1 className="text-slate-800 text-2xl font-medium">Welcome</h1>

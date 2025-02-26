@@ -43,7 +43,7 @@ export default function Register() {
 
     return (
         <>
-            <div className="bg-indigo-950 justify-center items-center flex inset-0 absolute">
+            <div className="bg-indigo-950 min-h-screen flex justify-center items-center">
                 <form onSubmit={handleRegister} method="POST" action="" className="w-full max-w-md bg-slate-50 text-center p-4 rounded-lg shadow-md">
                     <div className='mb-6'>
                         <h1 className="text-slate-800 text-2xl font-medium">Create an account</h1>
